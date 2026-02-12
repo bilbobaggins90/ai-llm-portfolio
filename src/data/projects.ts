@@ -2,6 +2,14 @@ import { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
+    id: 'code-docgen',
+    title: 'AI Code Documentation Generator',
+    description: 'Fine-tuned CodeLlama-7B using QLoRA to automatically generate Python docstrings with 78% improvement over base model (BLEU: 0.23→0.41). Trained on 8K examples in 3 hours on free Colab GPU with interactive demo showing side-by-side comparisons.',
+    techStack: ['PyTorch', 'HuggingFace', 'QLoRA', 'CodeLlama-7B', 'Gradio', 'Transformers'],
+    githubUrl: 'https://github.com/bilbobaggins90/ai-code-docgen',
+    demoUrl: 'https://huggingface.co/spaces/YOUR_USERNAME/code-docgen',
+  },
+  {
     id: 'gpt-chatbot',
     title: 'GPT-based Chatbot',
     description: 'An intelligent conversational AI powered by GPT-4 with context awareness and multi-turn dialogue capabilities. Features custom prompt engineering and conversation memory.',
