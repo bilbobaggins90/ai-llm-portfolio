@@ -1,5 +1,9 @@
 # AI/LLM Portfolio Website
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/bilbobaggins90/ai-llm-portfolio)
+
+🌐 **Live Site**: https://ai-llm-portfolio.vercel.app
+
 A modern, minimal portfolio website showcasing AI and Large Language Model (LLM) projects. Built with Next.js 14, React, TypeScript, and Tailwind CSS.
 
 ## Features
