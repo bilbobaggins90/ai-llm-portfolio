@@ -1,0 +1,68 @@
+# Training Configuration for Code README Writer
+# Model: TinyLlama-1.1B (small enough for free Colab GPU)
+# Method: SFT with QLoRA (4-bit quantization)
+
+model:
+  name: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+  max_length: 2048
+  torch_dtype: "float16"
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_compute_dtype: "float16"
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+training:
+  output_dir: "./outputs/readme-writer-tinyllama"
+  num_train_epochs: 3
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 2.0e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  lr_scheduler_type: "cosine"
+  logging_steps: 10
+  save_strategy: "epoch"
+  eval_strategy: "epoch"
+  fp16: true
+  optim: "paged_adamw_32bit"
+  max_grad_norm: 0.3
+  group_by_length: true
+  report_to: "wandb"
+  seed: 42
+
+data:
+  train_split: 0.9
+  max_samples: 10000
+  prompt_template: |
+    <|system|>
+    You are a technical writer that generates comprehensive README.md files for code repositories. Given the repository structure and code contents, write a clear, well-structured README.</s>
+    <|user|>
+    Generate a README.md for the following repository:
+
+    Repository name: {repo_name}
+
+    File structure:
+    {file_tree}
+
+    Key files:
+    {code_snippets}</s>
+    <|assistant|>
+    {readme_content}</s>
