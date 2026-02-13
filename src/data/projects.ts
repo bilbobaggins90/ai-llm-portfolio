@@ -15,7 +15,6 @@ export const projects: Project[] = [
     description: 'Fine-tuned TinyLlama-1.1B with QLoRA to generate README.md files from repository structure and code. Trained on 5K+ GitHub repo-README pairs with SFT, achieving ROUGE-1: 0.18→0.34 (+89%) and ROUGE-L: 0.15→0.29 (+93%). Includes Gradio demo with side-by-side before/after comparison.',
     techStack: ['PyTorch', 'HuggingFace', 'QLoRA', 'TRL', 'TinyLlama-1.1B', 'Gradio', 'PEFT'],
     githubUrl: 'https://github.com/bilbobaggins90/code-readme-writer',
-    demoUrl: 'https://huggingface.co/spaces/YOUR_USERNAME/code-readme-writer',
   },
   {
     id: 'gpt-chatbot',
